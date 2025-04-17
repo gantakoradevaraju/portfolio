@@ -1,0 +1,471 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent flash of light mode */
+:root {
+  color-scheme: dark;
+
+  /* Base colors in RGB format */
+  --primary-50: 240 247 255;
+  --primary-100: 224 240 255;
+  --primary-200: 186 224 255;
+  --primary-300: 124 197 255;
+  --primary-400: 56 168 255;
+  --primary-500: 0 136 255;
+  --primary-600: 0 102 204;
+  --primary-700: 0 82 163;
+  --primary-800: 0 64 128;
+  --primary-900: 0 51 102;
+
+  /* Theme-specific variables */
+  --background: 255 255 255;
+  --foreground: 26 26 26;
+  --muted: 102 102 102;
+  --accent: rgb(var(--primary-500));
+  --accent-foreground: 255 255 255;
+  --border: 229 229 229;
+  --ring: rgb(var(--primary-400));
+}
+
+[data-theme="dark"] {
+  --background: 10 10 31;
+  --foreground: 255 255 255;
+  --muted: 160 160 160;
+  --accent: rgb(var(--primary-400));
+  --accent-foreground: 255 255 255;
+  --border: 42 42 58;
+  --ring: rgb(var(--primary-500));
+}
+
+html {
+  @apply dark:bg-neutral-900;
+}
+
+@layer base {
+  body {
+    @apply bg-white dark:bg-[#0a0a1f] text-foreground;
+  }
+
+  /* Default to dark mode values */
+  :root {
+    --primary-50: 2 44 34;
+    --primary-100: 6 78 59;
+    --primary-200: 6 95 70;
+    --primary-300: 4 120 87;
+    --primary-400: 5 150 105;
+    --primary-500: 16 185 129;
+    --primary-600: 52 211 153;
+    --primary-700: 110 231 183;
+    --primary-800: 167 243 208;
+    --primary-900: 209 250 229;
+    --primary-950: 236 253 245;
+  }
+
+  /* Light mode values */
+  :root.light {
+    --primary-50: 236 253 245;
+    --primary-100: 209 250 229;
+    --primary-200: 167 243 208;
+    --primary-300: 110 231 183;
+    --primary-400: 52 211 153;
+    --primary-500: 16 185 129;
+    --primary-600: 5 150 105;
+    --primary-700: 4 120 87;
+    --primary-800: 6 95 70;
+    --primary-900: 6 78 59;
+    --primary-950: 2 44 34;
+  }
+
+  .dark {
+    --primary-50: 2 44 34;
+    --primary-100: 6 78 59;
+    --primary-200: 6 95 70;
+    --primary-300: 4 120 87;
+    --primary-400: 5 150 105;
+    --primary-500: 16 185 129;
+    --primary-600: 52 211 153;
+    --primary-700: 110 231 183;
+    --primary-800: 167 243 208;
+    --primary-900: 209 250 229;
+    --primary-950: 236 253 245;
+  }
+
+  /* Enhanced Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  /* Main headers with enhanced gradient */
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400 pb-1;
+  }
+
+  /* Section headers with improved underline effect */
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl relative inline-block text-neutral-800 dark:text-white;
+  }
+
+  h2::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500/50 to-secondary-500/50 transform scale-x-0 transition-transform duration-300 ease-out;
+  }
+
+  h2:hover::after {
+    @apply scale-x-100;
+  }
+
+  /* Subsection headers with enhanced contrast */
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl text-neutral-800 dark:text-neutral-100;
+  }
+
+  /* Component headers */
+  h4 {
+    @apply text-xl md:text-2xl text-primary-700 dark:text-primary-400 font-semibold;
+  }
+
+  /* Base text styles with better readability */
+  body {
+    @apply text-neutral-700 dark:text-neutral-200 leading-relaxed bg-neutral-50 dark:bg-neutral-900;
+  }
+
+  /* Enhanced link styles */
+  a {
+    @apply text-primary-600 dark:text-primary-400 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors duration-200;
+  }
+
+  /* Card and container styles */
+  .card {
+    @apply bg-white dark:bg-neutral-800 shadow-soft-md dark:shadow-none border border-neutral-200/50 dark:border-neutral-700/50 rounded-lg;
+  }
+
+  /* Button styles */
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white shadow-soft-md hover:shadow-soft-xl;
+  }
+
+  /* Input styles */
+  input, textarea, select {
+    @apply bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-md px-4 py-2 focus:ring-2 focus:ring-primary-500/50 dark:focus:ring-primary-400/50 focus:border-transparent outline-none transition-all duration-200;
+  }
+}
+
+/* Theme transition */
+* {
+  @apply transition-colors duration-300;
+}
+
+/* Enhanced scrollbar styling */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-neutral-100 dark:bg-neutral-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-300 dark:bg-neutral-600 rounded-full hover:bg-neutral-400 dark:hover:bg-neutral-500;
+}
+
+/* Grid background pattern with better contrast */
+.bg-grid-pattern {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(203, 213, 225, 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(203, 213, 225, 0.2) 1px, transparent 1px);
+}
+
+.dark .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+}
+
+/* Enhanced glow effects */
+.glow {
+  position: relative;
+}
+
+.glow::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  background: radial-gradient(circle at center, 
+    var(--tw-gradient-from) 0%,
+    transparent 70%);
+  opacity: 0.15;
+  filter: blur(20px);
+}
+
+/* Section styling */
+.section {
+  @apply relative py-16 md:py-24;
+}
+
+.section-inner {
+  @apply relative z-10 container mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Glass effect */
+.glass {
+  @apply bg-white/70 dark:bg-neutral-800/70 backdrop-blur-md border border-white/20 dark:border-neutral-700/20;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400;
+}
+
+/* Base styles */
+html,
+body {
+  min-height: 100vh;
+  width: 100%;
+}
+
+body {
+  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-white;
+}
+
+/* Dark mode specific styles */
+.dark body {
+  @apply bg-gray-900 text-white;
+}
+
+/* Ensure dark mode is properly applied */
+:root.dark {
+  color-scheme: dark;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+/* Input and form styling */
+input, textarea {
+  @apply bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-gray-200 dark:border-gray-700;
+}
+
+/* Button styling */
+button {
+  @apply text-gray-900 dark:text-white;
+}
+
+/* Theme transitions */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Loading animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 3D effects */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Backdrop blur variations */
+.backdrop-blur-xs {
+  backdrop-filter: blur(2px);
+}
+
+.backdrop-blur-2xl {
+  backdrop-filter: blur(40px);
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Gradient text animation */
+@keyframes gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 15s ease infinite;
+  background-size: 200% 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-colors duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700;
+  }
+
+  .nav-link {
+    @apply text-muted hover:text-primary-500 transition-colors duration-200;
+  }
+
+  .section {
+    @apply py-20;
+  }
+
+  .container {
+    @apply px-4 mx-auto max-w-7xl;
+  }
+
+  .animated-gradient {
+    background: linear-gradient(
+      -45deg,
+      rgb(var(--primary-500)),
+      rgb(var(--primary-600)),
+      rgb(var(--primary-400)),
+      rgb(var(--primary-500))
+    );
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  .grid-background {
+    background-image: linear-gradient(rgb(var(--border)) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--border)) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold text-center mb-8;
+    background: linear-gradient(to right, rgb(var(--primary-500)), rgb(var(--primary-600)));
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .button-primary {
+    @apply px-6 py-3 rounded-full font-medium text-lg shadow-lg transition-all;
+    background: linear-gradient(to right, rgb(var(--primary-500)), rgb(var(--primary-600)));
+    color: rgb(var(--accent-foreground));
+  }
+
+  .button-secondary {
+    @apply px-6 py-3 rounded-full font-medium text-lg shadow-lg transition-all;
+    border: 2px solid rgb(var(--primary-500));
+    color: rgb(var(--primary-500));
+    background: transparent;
+  }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating Animation */
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-purple-600 dark:from-primary-400 dark:to-purple-400;
+  }
+
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+}
+
+/* Animation classes */
+.animate-gradient-text {
+  background-size: 200% auto;
+  animation: gradient-text 4s ease infinite;
+}
+
+@keyframes gradient-text {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
