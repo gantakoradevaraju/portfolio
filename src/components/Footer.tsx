@@ -21,14 +21,14 @@ const Footer = () => {
     'Team Leader',
     'Agile Gospeller',
     'DevOps Evangalist',
-    'Food Blogger',
-    'Hobbyist Photographer'
+    // 'Food Blogger',
+    // 'Hobbyist Photographer'
   ]
 
   const contactInfo = {
-    city: '7378 Parkridge Bvld, Apt 180 Irving, Texas, 75063',
-    phone: '+1 330-459-2734',
-    email: 'gantakoradevaraju@gmail.com'
+    city: process.env.NEXT_PUBLIC_LOCATION || "Irving, Texas, USA",
+    phone: process.env.NEXT_PUBLIC_PHONE || "+1 330-459-2734",
+    email: process.env.NEXT_PUBLIC_EMAIL || "gantakoradevaraju@gmail.com"
   }
 
   const socialLinks = [
