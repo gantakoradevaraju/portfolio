@@ -5,16 +5,26 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { CommandLineIcon, CloudIcon, CodeBracketIcon } from '@heroicons/react/24/outline'
 
 const contactInfo = {
-  name: "DEVA RAJU GANTAKORA",
-  phone: "+1 330-459-2734",
-  email: "gantakoradevaraju@gmail.com",
-  title: "DevOps Engineer & Cloud Infrastructure Architect"
+  name: process.env.NEXT_PUBLIC_NAME || "DEVA RAJU GANTAKORA",
+  phone: process.env.NEXT_PUBLIC_PHONE || "+1 330-459-2734",
+  email: process.env.NEXT_PUBLIC_EMAIL || "gantakoradevaraju@gmail.com",
+  title: "DevOps Engineer & Cloud Infrastructure Architect",
+  summary: "Architecting scalable cloud solutions with a focus on automation, security, and operational excellence"
 }
 
 export default function HeroSection() {
   const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], [0, 300])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const [isMounted, setIsMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  if (!isMounted) {
+    return null // or a loading skeleton
+  }
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -99,20 +109,29 @@ export default function HeroSection() {
             transition={{ duration: 0.8 }}
           >
             <motion.h1 
-              className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary-500 via-purple-500 to-primary-500 text-transparent bg-clip-text"
+              className="text-4xl md:text-6xl font-bold mb-4 text-white"
               whileHover={{ scale: 1.05 }}
             >
               {contactInfo.name}
             </motion.h1>
             
             <motion.h2
-              className="text-2xl md:text-3xl lg:text-4xl font-semibold text-muted mb-8"
+              className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-400 mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               {contactInfo.title}
             </motion.h2>
+
+            <motion.p
+              className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              {contactInfo.summary}
+            </motion.p>
 
             <motion.div
               className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-lg text-muted"
@@ -171,7 +190,7 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}
-                className="button-primary"
+                className="px-8 py-3 bg-primary-500 text-white rounded-lg font-semibold shadow-lg hover:bg-primary-600 transition-colors"
               >
                 View Experience
               </motion.button>
@@ -179,7 +198,7 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="button-secondary"
+                className="px-8 py-3 border-2 border-primary-500 text-primary-500 rounded-lg font-semibold hover:bg-primary-500/10 transition-colors"
               >
                 Contact Me
               </motion.button>

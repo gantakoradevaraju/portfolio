@@ -173,7 +173,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
           <p className="text-center text-gray-600 dark:text-gray-400 text-sm">
-            Copyright © {currentYear} Aditya Gundecha. All rights reserved.
+            Copyright © {currentYear} Devaraju Gantakora. All rights reserved.
           </p>
         </div>
       </div>

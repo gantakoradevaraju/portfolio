@@ -11,10 +11,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
+    <html lang="en" suppressHydrationWarning className="scroll-smooth dark">
       <head>
         <meta name="theme-color" content="#111827" />
-        <meta name="color-scheme" content="light dark" />
+        <meta name="color-scheme" content="dark" />
       </head>
       <body className={`${inter.className} antialiased`}>
         {/* Background container */}
@@ -22,22 +22,19 @@ export default function RootLayout({
           {/* Main background image */}
           <div 
             style={{ backgroundImage: 'url("/images/devops-bg.jpg")' }}
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-500 transform scale-105 motion-safe:animate-subtle-zoom opacity-30 dark:opacity-20"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-500 transform scale-105 motion-safe:animate-subtle-zoom opacity-20"
           />
 
-          {/* Light theme overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-blue-50/50 to-white/40 dark:opacity-0 transition-all duration-500" />
-
           {/* Dark theme overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/60 via-blue-900/30 to-gray-900/60 opacity-0 dark:opacity-100 transition-all duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/60 via-blue-900/30 to-gray-900/60 opacity-100 transition-all duration-500" />
 
           {/* Additional overlay effects */}
           <div className="absolute inset-0">
             {/* Animated gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-blue-500/5 dark:from-blue-500/10 dark:via-purple-500/10 dark:to-blue-500/10 animate-gradient-slow" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-blue-500/10 animate-gradient-slow" />
             
             {/* Dot pattern */}
-            <div className="absolute inset-0 bg-[radial-gradient(#3B82F6_0.8px,transparent_0.8px)] [background-size:24px_24px] opacity-[0.1] dark:opacity-[0.2]" />
+            <div className="absolute inset-0 bg-[radial-gradient(#3B82F6_0.8px,transparent_0.8px)] [background-size:24px_24px] opacity-[0.2]" />
           </div>
 
           {/* Floating elements */}
