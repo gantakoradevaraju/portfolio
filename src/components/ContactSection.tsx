@@ -1,18 +1,75 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FiPhone, FiMail, FiLinkedin, FiGithub } from 'react-icons/fi'
 
 const contactInfo = {
-  name: "DEVA RAJU GANTAKORA",
-  phone: "+1 3304592734",
-  email: "gantakoradevaraju@gmail.com",
-  linkedin: "https://linkedin.com/in/devaraju-gantakora",
-  github: "https://github.com/devaraju-gantakora"
+  name: process.env.NEXT_PUBLIC_NAME,
+  phone: process.env.NEXT_PUBLIC_PHONE,
+  email: process.env.NEXT_PUBLIC_EMAIL,
+  linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL,
+  github: process.env.NEXT_PUBLIC_GITHUB_URL
 }
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
+  const [status, setStatus] = useState({
+    type: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setStatus({ type: '', message: '' })
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setStatus({
+          type: 'success',
+          message: 'Message sent successfully! I will get back to you soon.'
+        })
+        setFormData({ name: '', email: '', phone: '', message: '' })
+      } else {
+        setStatus({
+          type: 'error',
+          message: data.error || 'Something went wrong. Please try again.'
+        })
+      }
+    } catch (error) {
+      setStatus({
+        type: 'error',
+        message: 'Failed to send message. Please try again.'
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -27,7 +84,7 @@ const ContactSection = () => {
             Let's Connect
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div className="space-y-6">
               <h3 className="text-xl font-semibold mb-4">Contact Details</h3>
@@ -74,9 +131,9 @@ const ContactSection = () => {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-card rounded-lg p-6 shadow-lg">
+            <div>
               <h3 className="text-xl font-semibold mb-4">Send a Message</h3>
-              <form className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-muted mb-1">
                     Name
@@ -85,6 +142,9 @@ const ContactSection = () => {
                     type="text"
                     id="name"
                     name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
                     className="w-full px-4 py-2 rounded-md bg-background border border-border focus:border-primary-500 focus:ring-1 focus:ring-primary-500 outline-none transition-colors"
                   />
                 </div>
@@ -96,6 +156,22 @@ const ContactSection = () => {
                     type="email"
                     id="email"
                     name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-2 rounded-md bg-background border border-border focus:border-primary-500 focus:ring-1 focus:ring-primary-500 outline-none transition-colors"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-muted mb-1">
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
                     className="w-full px-4 py-2 rounded-md bg-background border border-border focus:border-primary-500 focus:ring-1 focus:ring-primary-500 outline-none transition-colors"
                   />
                 </div>
@@ -106,17 +182,33 @@ const ContactSection = () => {
                   <textarea
                     id="message"
                     name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
                     rows={4}
                     className="w-full px-4 py-2 rounded-md bg-background border border-border focus:border-primary-500 focus:ring-1 focus:ring-primary-500 outline-none transition-colors resize-none"
-                  ></textarea>
+                  />
                 </div>
+
+                {status.message && (
+                  <div className={`p-3 rounded-md ${
+                    status.type === 'success' 
+                      ? 'bg-green-500/10 text-green-500 border border-green-500/20' 
+                      : 'bg-red-500/10 text-red-500 border border-red-500/20'
+                  }`}>
+                    {status.message}
+                  </div>
+                )}
+
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full py-2 px-4 bg-primary-500 text-white rounded-md hover:bg-primary-600 transition-colors"
+                  disabled={isSubmitting}
+                  className={`w-full px-6 py-3 rounded-md bg-primary-500 text-white font-medium transition-all duration-200 
+                    ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-primary-600 active:scale-[0.98]'}`}
+                  whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                  whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </motion.button>
               </form>
             </div>

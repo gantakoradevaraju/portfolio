@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import ThemeToggle from './ThemeToggle'
+import React from 'react'
+import Link from 'next/link'
 
 const navLinks = [
   { href: '#about', label: 'About' },
@@ -28,7 +29,7 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-gray-900/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -36,7 +37,7 @@ export default function Navbar() {
           {/* Logo/Name */}
           <motion.a
             href="#"
-            className="text-xl font-bold text-gradient"
+            className="text-xl font-bold text-white hover:text-blue-400 transition-colors"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -50,7 +51,7 @@ export default function Navbar() {
               <motion.a
                 key={link.href}
                 href={link.href}
-                className="nav-link text-sm font-medium"
+                className="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -58,12 +59,11 @@ export default function Navbar() {
                 {link.label}
               </motion.a>
             ))}
-            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden text-foreground"
+            className="md:hidden text-white hover:text-blue-400"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
           >
@@ -96,12 +96,12 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="bg-background/95 backdrop-blur-md px-4 pt-2 pb-4 shadow-lg">
+            <div className="bg-gray-900/95 backdrop-blur-md px-4 pt-2 pb-4 shadow-lg">
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  className="block py-2 nav-link text-base font-medium"
+                  className="block py-2 text-gray-300 hover:text-white text-base font-medium transition-colors"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -110,9 +110,6 @@ export default function Navbar() {
                   {link.label}
                 </motion.a>
               ))}
-              <div className="pt-2 pl-2">
-                <ThemeToggle />
-              </div>
             </div>
           </motion.div>
         )}
