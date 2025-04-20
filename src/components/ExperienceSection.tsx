@@ -39,9 +39,9 @@ export default function ExperienceSection() {
               </div>
               
               <div className="flex-grow">
-                <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm">
+                {/* <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm">
                   {experience.description}
-                </p>
+                </p> */}
                 
                 <div className="space-y-4">
                   <h4 className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2">
@@ -101,9 +101,9 @@ export default function ExperienceSection() {
               </div>
               
               <div className="flex-grow">
-                <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm">
+                {/* <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm">
                   {experience.description}
-                </p>
+                </p> */}
                 
                 <div className="space-y-4">
                   <h4 className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2">
