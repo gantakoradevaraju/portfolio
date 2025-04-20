@@ -8,6 +8,31 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Deva Raju Gantakora - DevOps Engineer & Cloud Infrastructure Architect',
   description: 'Portfolio of Deva Raju Gantakora, a DevOps Engineer & Cloud Infrastructure Architect specializing in cloud solutions, automation, and infrastructure optimization.',
+  icons: {
+    apple: [
+      { url: '/apple-icon-57x57.png', sizes: '57x57', type: 'image/png' },
+      { url: '/apple-icon-60x60.png', sizes: '60x60', type: 'image/png' },
+      { url: '/apple-icon-72x72.png', sizes: '72x72', type: 'image/png' },
+      { url: '/apple-icon-76x76.png', sizes: '76x76', type: 'image/png' },
+      { url: '/apple-icon-114x114.png', sizes: '114x114', type: 'image/png' },
+      { url: '/apple-icon-120x120.png', sizes: '120x120', type: 'image/png' },
+      { url: '/apple-icon-144x144.png', sizes: '144x144', type: 'image/png' },
+      { url: '/apple-icon-152x152.png', sizes: '152x152', type: 'image/png' },
+      { url: '/apple-icon-180x180.png', sizes: '180x180', type: 'image/png' },
+    ],
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/android-icon-192x192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'manifest', url: '/manifest.json' },
+      { rel: 'msapplication-TileColor', url: '#ffffff' },
+      { rel: 'msapplication-TileImage', url: '/ms-icon-144x144.png' },
+      { rel: 'theme-color', url: '#ffffff' },
+    ],
+  },
 }
 
 export default function RootLayout({
@@ -26,42 +51,7 @@ export default function RootLayout({
             
             {/* Content wrapper */}
             <div className="relative z-10">
-              {/* Background container */}
-              <div className="fixed inset-0">
-                {/* Main background image */}
-                <div 
-                  style={{ backgroundImage: 'url("/images/devops-bg.jpg")' }}
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-500 transform scale-105 motion-safe:animate-subtle-zoom opacity-20"
-                />
-
-                {/* Dark theme overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-900/60 via-blue-900/30 to-gray-900/60 opacity-100 transition-all duration-500" />
-
-                {/* Additional overlay effects */}
-                <div className="absolute inset-0">
-                  {/* Animated gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-blue-500/10 animate-gradient-slow" />
-                  
-                  {/* Dot pattern */}
-                  <div className="absolute inset-0 bg-[radial-gradient(#3B82F6_0.8px,transparent_0.8px)] [background-size:24px_24px] opacity-[0.2]" />
-                </div>
-
-                {/* Floating elements */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                  <div className="absolute top-20 left-10 w-40 h-40 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl animate-float" />
-                  <div className="absolute bottom-20 right-10 w-48 h-48 bg-purple-500/10 dark:bg-purple-500/20 rounded-full blur-3xl animate-float-delayed" />
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="relative min-h-screen w-full">
-                {children}
-              </div>
-
-              {/* Tech stack floating badges */}
-              <div className="fixed bottom-4 left-4 hidden lg:flex gap-4 animate-float-slow pointer-events-none">
-                {/* Tech badges will be added here */}
-              </div>
+              {children}
             </div>
           </div>
         </Providers>
