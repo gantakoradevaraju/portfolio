@@ -2,8 +2,6 @@
 
 A modern, responsive portfolio website built with Next.js 14, TypeScript, and Tailwind CSS. Features a beautiful dark/light theme, smooth animations, and a clean design.
 
-![Portfolio Preview](public/preview.png)
-
 ## 🌟 Features
 
 - 🎨 **Dynamic Theme Switching** - Elegant dark/light mode with smooth transitions
@@ -153,8 +151,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📧 Contact
 
 For any questions or feedback, please reach out:
-- Your Name - [your.email@example.com](mailto:your.email@example.com)
-- Project Link: [https://github.com/yourusername/devops-portfolio](https://github.com/yourusername/devops-portfolio)
+- Your Name - Deva Raju G
+- Email - gantakoradevaraju@gmail.com
 
 ---
-Made with ❤️ by [Your Name]
+Made with ❤️ by DEVA RAJU
