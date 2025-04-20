@@ -103,13 +103,13 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.h1 
+            {/* <motion.h1 
               className="text-4xl md:text-6xl font-bold mb-4 text-gray-900 dark:text-white transition-colors duration-500"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 10 }}
             >
               {contactInfo.name}
-            </motion.h1>
+            </motion.h1> */}
             
             <motion.h2
               className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-600 dark:text-blue-500 mb-4 transition-colors duration-500"

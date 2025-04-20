@@ -3,31 +3,31 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { AcademicCapIcon } from '@heroicons/react/24/outline'
-
-const educationData = [
-  {
-    degree: "Master of Science in DevOps",
-    school: "Tech University",
-    period: "2020 - 2022",
-    description: "Specialized in Cloud Infrastructure and CI/CD pipelines",
-    achievements: [
-      "Graduated with Distinction",
-      "Led DevOps transformation projects",
-      "Published research on containerization strategies"
-    ]
-  },
-  {
-    degree: "Bachelor of Engineering in Computer Science",
-    school: "Engineering College",
-    period: "2016 - 2020",
-    description: "Focus on software development and system architecture",
-    achievements: [
-      "First Class Honours",
-      "Best Project Award",
-      "Technical Lead for college projects"
-    ]
-  }
-]
+import { educationData } from '@/config/content'
+// const educationData = [
+//   {
+//     degree: "Master of Science in DevOps",
+//     school: "Tech University",
+//     period: "2020 - 2022",
+//     description: "Specialized in Cloud Infrastructure and CI/CD pipelines",
+//     achievements: [
+//       "Graduated with Distinction",
+//       "Led DevOps transformation projects",
+//       "Published research on containerization strategies"
+//     ]
+//   },
+//   {
+//     degree: "Bachelor of Engineering in Computer Science",
+//     school: "Engineering College",
+//     period: "2016 - 2020",
+//     description: "Focus on software development and system architecture",
+//     achievements: [
+//       "First Class Honours",
+//       "Best Project Award",
+//       "Technical Lead for college projects"
+//     ]
+//   }
+// ]
 
 const certifications = [
   {
@@ -99,13 +99,13 @@ export default function EducationSection() {
                   <p className="text-gray-600 dark:text-gray-300 mb-2">{edu.school}</p>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{edu.period}</p>
                   <p className="text-gray-600 dark:text-gray-300 mb-4">{edu.description}</p>
-                  <ul className="list-disc list-inside space-y-1">
+                  {/* <ul className="list-disc list-inside space-y-1">
                     {edu.achievements.map((achievement, i) => (
                       <li key={i} className="text-gray-600 dark:text-gray-300 text-sm">
                         {achievement}
                       </li>
                     ))}
-                  </ul>
+                  </ul> */}
                 </motion.div>
               ))}
             </div>
