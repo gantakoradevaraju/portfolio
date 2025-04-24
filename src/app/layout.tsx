@@ -42,12 +42,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100`}>
+      <body className={`${inter.className} antialiased`}>
         <Providers>
           <ThemeToggle />
           <div className="relative min-h-screen">
-            {/* Background gradient */}
-            <div className="fixed inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/50 dark:from-gray-950 dark:via-gray-900 dark:to-blue-950/30" />
+            {/* Light theme background */}
+            <div className="fixed inset-0 bg-gradient-to-br from-white/90 to-blue-50/90 transition-opacity duration-300 ease-in-out dark:opacity-0">
+              <div className="absolute inset-0 bg-[url('/images/devops-bg.jpg')] bg-cover bg-center bg-fixed opacity-20" />
+            </div>
+            
+            {/* Dark theme background */}
+            <div className="fixed inset-0 bg-gradient-to-br from-gray-950 to-blue-950 opacity-0 transition-opacity duration-300 ease-in-out dark:opacity-100">
+              <div className="absolute inset-0 bg-[url('/images/devops-bg.jpg')] bg-cover bg-center bg-fixed opacity-30 mix-blend-overlay" />
+            </div>
             
             {/* Content wrapper */}
             <div className="relative z-10">
